@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.ksp)
 }
 
@@ -71,6 +72,8 @@ dependencies {
 
     // imported
     implementation(libs.androidx.lifecycle)
+    implementation(libs.androidx.compose.navigation)
+    implementation(libs.kotlinx.serialization.json)
 
     // Koin
     implementation(project.dependencies.platform(libs.koin.bom))
