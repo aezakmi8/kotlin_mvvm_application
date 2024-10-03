@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
 }
 
@@ -68,8 +69,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // imported
+    implementation(libs.androidx.lifecycle)
 
-    implementation(libs.koin.core)
+    // Koin
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.android)
+    // watch on issue https://github.com/InsertKoinIO/koin/issues/1989
+    implementation(libs.koin.core.viewmodel)
+    implementation(libs.koin.core.viewmodel.navigation)
+
+    // Koin-annotations
     implementation(libs.koin.annotations)
     ksp(libs.koin.ksp)
 }
