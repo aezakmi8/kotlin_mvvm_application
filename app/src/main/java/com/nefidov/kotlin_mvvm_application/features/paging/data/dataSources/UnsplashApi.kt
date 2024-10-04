@@ -10,7 +10,7 @@ interface UnsplashApi {
         const val CLIENT_ID = "yUgjt75aYFpp7tr3x8IsNaDNmRDO7ZeWZyUwUVIGmBA"
     }
 
-    @Headers("Accept-Version: v1", "Authorization: Client-ID $CLIENT_ID")
+    @Headers("Authorization: Client-ID $CLIENT_ID")
     @GET("photos")
     suspend fun searchPhotos(
         @Query("page") page: Int,

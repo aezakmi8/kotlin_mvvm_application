@@ -86,6 +86,7 @@ dependencies {
     // pagination
     implementation(libs.androidx.paging)
     implementation(libs.retrofit2)
+    implementation(libs.gson.converter)
     implementation(libs.coil)
 
     // Koin-annotations

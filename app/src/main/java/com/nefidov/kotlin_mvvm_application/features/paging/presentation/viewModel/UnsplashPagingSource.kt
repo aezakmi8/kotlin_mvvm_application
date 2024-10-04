@@ -23,6 +23,9 @@ class UnsplashPagingSource(private val unsplashApi: UnsplashApi) : PagingSource<
             LoadResult.Error(exception)
         } catch (exception: HttpException) {
             LoadResult.Error(exception)
+        } catch (exception: Exception) {
+            println(exception.message)
+            LoadResult.Error(exception)
         }
     }
 
