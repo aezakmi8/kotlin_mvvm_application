@@ -14,6 +14,10 @@ kotlinxSerializationJson = "1.7.1"
 kspPlugin = "2.0.20-1.0.24"
 koin = "4.0.0"
 koinKsp = "1.4.0-RC4"
+pagingCompose = "3.3.2"
+retrofit2 = "2.11.0"
+coil = "2.7.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,13 +42,18 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 #koin
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
-#koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel" }
+koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel" }
 koin-android = { group = "io.insert-koin", name = "koin-android" }
 koin-core-viewmodel = { group = "io.insert-koin", name = "koin-core-viewmodel" }
 koin-core-viewmodel-navigation = { group = "io.insert-koin", name = "koin-core-viewmodel-navigation" }
 
 koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koinKsp" }
 koin-ksp = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinKsp" }
+
+#pagination
+androidx-paging = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingCompose" }
+retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2" }
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

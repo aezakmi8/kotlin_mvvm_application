@@ -9,6 +9,9 @@ object MainRoute
 object OtherListRoute
 
 @Serializable
+object PagingRoute
+
+@Serializable
 data class OtherDetailRoute(
     val id : Int
 )

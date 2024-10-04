@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.nefidov.kotlin_mvvm_application.features.main.presentation.pages.MainScreen
 import com.nefidov.kotlin_mvvm_application.features.main.presentation.pages.OtherListScreen
+import com.nefidov.kotlin_mvvm_application.features.paging.presentation.pages.UnsplashScreen
 
 @Composable
 fun NavGraph (
@@ -22,12 +23,21 @@ fun NavGraph (
         modifier = Modifier.padding(innerPadding)
     ) {
         composable<MainRoute> {
-            MainScreen(onOthersListClick = {
-                navController.navigate(OtherListRoute)
-            })
+            MainScreen(
+                onOthersListClick = {
+                    navController.navigate(OtherListRoute)
+                },
+                onImagesListClick = {
+                    navController.navigate(PagingRoute)
+                }
+            )
         }
         composable<OtherListRoute> {
             OtherListScreen()
+        }
+
+        composable<PagingRoute> {
+            UnsplashScreen()
         }
 //        composable<OtherDetailRoute> {
 //            val arguments = it.toRoute<OtherDetailRoute>()

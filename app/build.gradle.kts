@@ -79,8 +79,14 @@ dependencies {
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.koin.android)
     // watch on issue https://github.com/InsertKoinIO/koin/issues/1989
+    implementation(libs.koin.compose.viewmodel)
     implementation(libs.koin.core.viewmodel)
     implementation(libs.koin.core.viewmodel.navigation)
+
+    // pagination
+    implementation(libs.androidx.paging)
+    implementation(libs.retrofit2)
+    implementation(libs.coil)
 
     // Koin-annotations
     implementation(libs.koin.annotations)

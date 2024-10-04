@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun MainScreen(
     onOthersListClick: () -> Unit,
+    onImagesListClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -30,7 +31,6 @@ fun MainScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Placeholder for some content
         Text(
             text = "Placeholder 1",
             style = MaterialTheme.typography.bodyLarge,
@@ -39,7 +39,6 @@ fun MainScreen(
                 .padding(vertical = 8.dp)
         )
 
-        // Placeholder for some content
         Text(
             text = "Placeholder 2",
             style = MaterialTheme.typography.bodyLarge,
@@ -48,7 +47,6 @@ fun MainScreen(
                 .padding(vertical = 8.dp)
         )
 
-        // Button to navigate to OtherListScreen
         Button(
             onClick = onOthersListClick,
             modifier = Modifier
@@ -56,6 +54,15 @@ fun MainScreen(
                 .padding(vertical = 16.dp)
         ) {
             Text(text = "Go to Other List")
+        }
+
+        Button(
+            onClick = onImagesListClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 16.dp)
+        ) {
+            Text(text = "View images pagination")
         }
     }
 }
