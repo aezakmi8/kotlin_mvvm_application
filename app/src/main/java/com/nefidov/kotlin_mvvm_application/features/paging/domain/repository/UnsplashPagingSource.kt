@@ -9,7 +9,8 @@ import kotlinx.coroutines.delay
 import retrofit2.HttpException
 import java.io.IOException
 
-class UnsplashPagingSource(private val unsplashApi: UnsplashApi) : PagingSource<Int, UnsplashImage>() {
+class UnsplashPagingSource(private val unsplashApi: UnsplashApi) :
+    PagingSource<Int, UnsplashImage>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UnsplashImage> {
         val page = params.key ?: 1
 
