@@ -1,9 +1,11 @@
-package com.nefidov.kotlin_mvvm_application.features.paging.presentation.viewModel
+package com.nefidov.kotlin_mvvm_application.features.paging.domain.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.nefidov.kotlin_mvvm_application.features.paging.data.dataSources.UnsplashApi
 import com.nefidov.kotlin_mvvm_application.features.paging.data.models.UnsplashImage
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.delay
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -19,6 +21,8 @@ class UnsplashPagingSource(private val unsplashApi: UnsplashApi) : PagingSource<
                 prevKey = if (page == 1) null else page - 1,
                 nextKey = if (response.isEmpty()) null else page + 1
             )
+        } catch (exception: CancellationException) {
+            throw exception
         } catch (exception: IOException) {
             LoadResult.Error(exception)
         } catch (exception: HttpException) {

@@ -2,39 +2,47 @@ package com.nefidov.kotlin_mvvm_application.features.paging.presentation.viewMod
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.nefidov.kotlin_mvvm_application.features.paging.data.dataSources.UnsplashApi
 import com.nefidov.kotlin_mvvm_application.features.paging.data.models.UnsplashImage
+import com.nefidov.kotlin_mvvm_application.features.paging.domain.repository.UnsplashRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import org.koin.android.annotation.KoinViewModel
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 @KoinViewModel
-class UnsplashViewModel : ViewModel(), KoinComponent {
+class UnsplashViewModel(private val repository: UnsplashRepository) : ViewModel(), KoinComponent {
     private val _imagesState: MutableStateFlow<PagingData<UnsplashImage>> = MutableStateFlow(value = PagingData.empty())
-    val imagesState: MutableStateFlow<PagingData<UnsplashImage>> get() = _imagesState
+    val imagesState: StateFlow<PagingData<UnsplashImage>> get() = _imagesState
+
+    private val _isLoading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
 
     init {
         getImages()
     }
 
+    fun setLoading() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            delay(2000)
+            _isLoading.value = false
+        }
+    }
+
     private fun getImages() {
         viewModelScope.launch {
-            val unsplashApi : UnsplashApi by inject()
-            Pager(
-                config = PagingConfig(pageSize = 20, enablePlaceholders = false),
-                pagingSourceFactory = { UnsplashPagingSource(unsplashApi) }
-            ).flow
+            _isLoading.value = true
+            repository.getImages()
                 .distinctUntilChanged()
                 .cachedIn(viewModelScope)
                 .collect {
                     _imagesState.value = it
+                    _isLoading.value = false
                 }
         }
     }
