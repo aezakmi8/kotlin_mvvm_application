@@ -15,6 +15,9 @@ class UnsplashPagingSource(private val unsplashApi: UnsplashApi) : PagingSource<
         val page = params.key ?: 1
 
         return try {
+            // add some more work
+            delay(3000)
+
             val response = unsplashApi.searchPhotos(page, params.loadSize)
             LoadResult.Page(
                 data = response,

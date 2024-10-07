@@ -46,4 +46,8 @@ class UnsplashViewModel(private val repository: UnsplashRepository) : ViewModel(
                 }
         }
     }
+
+    fun refresh() {
+        getImages()
+    }
 }
