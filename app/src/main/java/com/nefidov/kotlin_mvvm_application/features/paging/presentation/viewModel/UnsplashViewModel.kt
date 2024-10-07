@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.nefidov.kotlin_mvvm_application.features.paging.data.models.UnsplashImage
+import com.nefidov.kotlin_mvvm_application.features.paging.domain.entities.UnsplashImage
 import com.nefidov.kotlin_mvvm_application.features.paging.domain.repository.UnsplashRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow

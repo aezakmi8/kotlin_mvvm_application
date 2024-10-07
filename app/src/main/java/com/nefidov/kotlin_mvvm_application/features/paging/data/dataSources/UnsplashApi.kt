@@ -1,6 +1,6 @@
 package com.nefidov.kotlin_mvvm_application.features.paging.data.dataSources
 
-import com.nefidov.kotlin_mvvm_application.features.paging.data.models.UnsplashImage
+import com.nefidov.kotlin_mvvm_application.features.paging.data.models.UnsplashImageDto
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
@@ -15,5 +15,5 @@ interface UnsplashApi {
     suspend fun searchPhotos(
         @Query("page") page: Int,
         @Query("per_page") perPage: Int
-    ): List<UnsplashImage>
+    ): List<UnsplashImageDto>
 }

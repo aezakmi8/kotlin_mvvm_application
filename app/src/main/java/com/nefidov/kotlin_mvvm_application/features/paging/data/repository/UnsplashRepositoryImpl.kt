@@ -4,7 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.nefidov.kotlin_mvvm_application.features.paging.data.dataSources.UnsplashApi
-import com.nefidov.kotlin_mvvm_application.features.paging.data.models.UnsplashImage
+import com.nefidov.kotlin_mvvm_application.features.paging.domain.entities.UnsplashImage
 import com.nefidov.kotlin_mvvm_application.features.paging.domain.repository.UnsplashRepository
 import com.nefidov.kotlin_mvvm_application.features.paging.domain.repository.UnsplashPagingSource
 import kotlinx.coroutines.flow.Flow
