@@ -3,14 +3,16 @@ package com.nefidov.kotlin_mvvm_application.features.paging.presentation.pages
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -19,22 +21,16 @@ import androidx.compose.material3.pulltorefresh.pullToRefresh
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import coil.compose.AsyncImage
-import com.nefidov.kotlin_mvvm_application.features.paging.data.models.UnsplashImage
+import com.nefidov.kotlin_mvvm_application.common.presentation.widgets.CustomAsyncImage
+import com.nefidov.kotlin_mvvm_application.features.paging.domain.entities.UnsplashImage
 import com.nefidov.kotlin_mvvm_application.features.paging.presentation.viewModel.UnsplashViewModel
-import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 
 
@@ -88,7 +84,12 @@ fun UnsplashScreen(viewModel: UnsplashViewModel = koinViewModel()) {
                 }
 
                 // items
-                items(count = images.itemCount) { index ->
+                items(
+                    count = images.itemCount,
+                    key = {
+                        images[it]!!.uuid
+                    }
+                ) { index ->
                     val item = images[index]!!
                     UnsplashImageItem(
                         image = item
@@ -128,21 +129,33 @@ fun Loading() {
     }
 }
 
+
+
 @Composable
 fun UnsplashImageItem(
-    image: UnsplashImage
+    image: UnsplashImage,
+    modifier: Modifier = Modifier
 ) {
-    Column(modifier = Modifier) {
-        AsyncImage(
-            model = image.urls.regular,
-            contentDescription = image.description,
-            contentScale = ContentScale.Crop,
+    Card(
+        modifier = modifier,
+        shape = CardDefaults.elevatedShape,
+        elevation = CardDefaults.cardElevation(),
+    ) {
+        CustomAsyncImage(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp)
+                .defaultMinSize(minHeight = 200.dp),
+            imgUrl = image.urls.small,
+            key = image.uuid,
         )
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = image.description ?: "No description", maxLines = 1)
+        Text(
+            text = image.description ?: "No description",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            maxLines = 1
+        )
     }
 }
 
