@@ -1,0 +1,1 @@
+keytool -keystore testApp.keystore -genkey -alias sign_v1 -keyalg RSA -keysize 2048 -validity 36500 -dname "CN=Test Name, OU=Mobile development team, O=Sole Proprietor Test Name, L=TestCity, S=Test region, C=RU" -storepass testApp -keypass testApp

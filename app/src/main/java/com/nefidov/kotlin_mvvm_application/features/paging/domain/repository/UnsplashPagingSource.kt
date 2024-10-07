@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import com.nefidov.kotlin_mvvm_application.features.paging.data.dataSources.UnsplashApi
 import com.nefidov.kotlin_mvvm_application.features.paging.domain.entities.UnsplashImage
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.delay
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -13,6 +14,7 @@ class UnsplashPagingSource(private val unsplashApi: UnsplashApi) : PagingSource<
         val page = params.key ?: 1
 
         return try {
+            delay(2000)
             val response = unsplashApi.searchPhotos(page, params.loadSize)
             val data = response.map { it.toEntity() }
             LoadResult.Page(

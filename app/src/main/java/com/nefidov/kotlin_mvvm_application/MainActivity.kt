@@ -12,11 +12,10 @@ import com.nefidov.kotlin_mvvm_application.common.di.initKoin
 import com.nefidov.kotlin_mvvm_application.router.NavGraph
 import com.nefidov.kotlin_mvvm_application.ui.theme.Kotlin_mvvm_applicationTheme
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        initKoin(this)
 
         enableEdgeToEdge()
         setContent {
