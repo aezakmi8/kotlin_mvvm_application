@@ -62,8 +62,7 @@ fun UnsplashScreen(viewModel: UnsplashViewModel = koinViewModel()) {
     ) {
         if (isLoading) {
             Loading()
-        }
-        else {
+        } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -106,10 +105,12 @@ fun UnsplashScreen(viewModel: UnsplashViewModel = koinViewModel()) {
 
             // refresh indicator
             Box(
-                Modifier.align(Alignment.TopCenter).graphicsLayer {
-                    scaleX = scaleFraction()
-                    scaleY = scaleFraction()
-                }
+                Modifier
+                    .align(Alignment.TopCenter)
+                    .graphicsLayer {
+                        scaleX = scaleFraction()
+                        scaleY = scaleFraction()
+                    }
             ) {
                 PullToRefreshDefaults.Indicator(
                     state = refreshState,
@@ -128,7 +129,6 @@ fun Loading() {
         )
     }
 }
-
 
 
 @Composable

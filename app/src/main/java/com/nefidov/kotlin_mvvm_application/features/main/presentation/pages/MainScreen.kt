@@ -5,24 +5,22 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.nefidov.kotlin_mvvm_application.features.main.presentation.viewModel.MainViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun MainScreen(
+    modifier: Modifier = Modifier,
+    viewModel: MainViewModel = koinViewModel(),
     onOthersListClick: () -> Unit,
-    onImagesListClick: () -> Unit,
-    modifier: Modifier = Modifier
+    onImagesListClick: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -39,14 +37,6 @@ fun MainScreen(
                 .padding(vertical = 8.dp)
         )
 
-        Text(
-            text = "Placeholder 2",
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-        )
-
         Button(
             onClick = onOthersListClick,
             modifier = Modifier
@@ -56,6 +46,14 @@ fun MainScreen(
             Text(text = "Go to Other List")
         }
 
+        Text(
+            text = "Placeholder 2",
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+        )
+
         Button(
             onClick = onImagesListClick,
             modifier = Modifier
@@ -63,6 +61,16 @@ fun MainScreen(
                 .padding(vertical = 16.dp)
         ) {
             Text(text = "View images pagination")
+        }
+
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 16.dp),
+            onClick = {
+                viewModel.logout()
+            }) {
+            Text(text = "Logout")
         }
     }
 }

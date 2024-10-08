@@ -13,6 +13,8 @@ object PagingRoute
 
 @Serializable
 data class OtherDetailRoute(
-    val id : Int
+    val id: Int
 )
 
+@Serializable
+object LoginScreenRoute

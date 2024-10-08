@@ -14,6 +14,7 @@ fun initKoin(application: Application) =
         modules(
             MainModule().module,
             RetrofitModule().module,
+            TokenProviderModule().module,
             ApiModule().module
         )
     }

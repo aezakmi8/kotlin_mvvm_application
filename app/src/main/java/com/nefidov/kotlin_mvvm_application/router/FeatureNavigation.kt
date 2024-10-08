@@ -1,26 +1,21 @@
 package com.nefidov.kotlin_mvvm_application.router
 
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
 import com.nefidov.kotlin_mvvm_application.features.main.presentation.pages.MainScreen
 import com.nefidov.kotlin_mvvm_application.features.main.presentation.pages.OtherListScreen
 import com.nefidov.kotlin_mvvm_application.features.paging.presentation.pages.UnsplashScreen
 
 @Composable
-fun NavGraph (
+fun FeatureNavigation(
     navController: NavHostController,
-    innerPadding: PaddingValues,
-    // maybe add authGuard delegate
 ) {
     NavHost(
         navController = navController,
         startDestination = MainRoute,
-        modifier = Modifier.padding(innerPadding)
     ) {
         composable<MainRoute> {
             MainScreen(
@@ -32,6 +27,7 @@ fun NavGraph (
                 }
             )
         }
+
         composable<OtherListRoute> {
             OtherListScreen()
         }
@@ -39,9 +35,9 @@ fun NavGraph (
         composable<PagingRoute> {
             UnsplashScreen()
         }
-//        composable<OtherDetailRoute> {
-//            val arguments = it.toRoute<OtherDetailRoute>()
-//
-//        }
+
+        composable<OtherDetailRoute> {
+            it.toRoute<OtherDetailRoute>()
+        }
     }
 }
