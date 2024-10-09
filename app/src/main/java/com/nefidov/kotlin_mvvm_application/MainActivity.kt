@@ -26,6 +26,11 @@ class MainActivity : ComponentActivity(), KoinComponent {
     private var userAuthState = mutableStateOf(AuthState.Unknown)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splash = installSplashScreen()
+        splash.setKeepOnScreenCondition {
+            userAuthState.value == AuthState.Unknown
+        }
+
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
@@ -40,12 +45,6 @@ class MainActivity : ComponentActivity(), KoinComponent {
 
         setContent {
             Kotlin_mvvm_applicationTheme {
-
-                val splash = installSplashScreen()
-
-                splash.setKeepOnScreenCondition {
-                    userAuthState.value == AuthState.Unknown
-                }
 
                 val navController = rememberNavController()
 
